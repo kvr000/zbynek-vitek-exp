@@ -33,18 +33,7 @@ def triangle():
     left(120)
     forward(25)
 
-
 def square():
-    forward(25)
-    left(90)
-    forward(50)
-    left(90)
-    forward(50)
-    left(90)
-    forward(50)
-    left(90)
-    forward(25)
-
 
 def rectangle():
     forward(40)
