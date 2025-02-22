@@ -138,7 +138,7 @@ def spiral2():
      # right(90)
 
 if playerChoice == "1":
-    spiral2()
+    spiral()
 
 elif playerChoice == "2":
     hexagon()
@@ -152,7 +152,7 @@ elif playerChoice == "4":
 elif playerChoice == "5":
     square()
 
-
+else:hideturtle()
 
 turtle.onscreenclick(lambda x, y: sys.exit(0), 1)
 turtle.mainloop()
