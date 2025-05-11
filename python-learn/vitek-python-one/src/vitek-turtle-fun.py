@@ -21,11 +21,8 @@ import random
 import sys
 import turtle
 from turtle import *
-shape("turtle")
-speed(3)
-pencolor("green")
-pensize(6)
-Screen().bgcolor("blue")
+
+
 
 def spiral():
     forward(100)
