@@ -43,7 +43,7 @@ elif playerChoice == "6":
 elif playerChoice == "7":
     print("you walk into a room with a Sphinx")
     print("the Sphinx asks you to answer a riddle")
-    print ("What has four legs in the morning two legs in the afternoon and three legs in the evening, asks the Sphinx")
+    print ("What has four legs in the morning two legs in the afternoon and three legs in the evening, asks the sphinx.")
     RiddleChoice = input("")
     if RiddleChoice == "human":
         print("the Sphinx hisses,you guessed correctly.")

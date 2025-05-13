@@ -19,7 +19,7 @@ while guess != number:
 
     if tries > 0 :
 
-        guess = int(input("you have " + str(tries)+" tries left please try again."))
+        guess = int(input("you have " + str(tries)+" tries left. please try again."))
         print()
     if tries ==0:
         print("You lose!")
@@ -27,7 +27,3 @@ while guess != number:
 
 if guess == number:
     print("CONGRATULATIONS! CORRECT ANSWER!")
-
-
-
-
