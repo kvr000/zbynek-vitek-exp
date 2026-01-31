@@ -4,18 +4,17 @@ import pygame
 import random
 import sys
 
-
 class VideostopGame:
     WIDTH = 600
     HEIGHT = 300
-    ROLL_INTERVAL_MS = 300
+    ROLL_INTERVAL_MS = 375
 
     WHITE = (245, 245, 245)
     BLACK = (30, 30, 30)
     GREEN = (40, 180, 0)
     RED = (200, 60, 60)
-    yellow = (255, 255, 40)
-    blue = (0, 0, 255)
+    YELLOW = (255, 255, 40)
+    BLUE = (0, 0, 255)
 
     DIE_SIZE = 100
     DOT_RADIUS = 10
@@ -28,6 +27,16 @@ class VideostopGame:
         5: [(0.25, 0.25), (0.25, 0.75), (0.75, 0.25), (0.75, 0.75), (0.5, 0.5)],
         6: [(0.25, 0.25), (0.25, 0.5), (0.25, 0.75), (0.75, 0.25), (0.75, 0.5), (0.75, 0.75)]
     }
+
+    dice: list[int] = []
+    rolling: bool = True
+    last_ticks: int
+    roll_interval: int
+
+    counter: int = 0
+    success: int = 0
+
+    exiting: bool = False
 
     def __init__(self):
         pygame.init()
@@ -59,6 +68,15 @@ class VideostopGame:
                 if event.key == pygame.K_SPACE and self.rolling:
                     self.rolling = False
 
+                    if self.dice[0] == self.dice[1] == self.dice[2]:
+
+                        self.success = self.success + 1
+
+                    else:
+                        self.counter = self.counter+1
+
+
+
                 if event.key == pygame.K_r:
                     self.reset()
 
@@ -72,7 +90,7 @@ class VideostopGame:
             self.last_ticks += self.roll_interval
             chosen = random.randrange(0, 3)
             self.dice[chosen] += 1
-            if self.dice[chosen] > 1:
+            if self.dice[chosen] > 6:
                 self.dice[chosen] = 1
 
             # gradual acceleration
@@ -80,11 +98,15 @@ class VideostopGame:
 
     def draw_die(self, value, x, y):
         rect = pygame.Rect(x, y, self.DIE_SIZE, self.DIE_SIZE)
-        pygame.draw.rect(self.screen, self.yellow, rect, border_radius=12)
+        pygame.draw.rect(self.screen, self.YELLOW, rect, border_radius=12)
         for dx, dy in self.DOT_POSITIONS[value]:
             cx = x + dx * self.DIE_SIZE
             cy = y + dy * self.DIE_SIZE
-            pygame.draw.circle(self.screen, self.blue, (int(cx), int(cy)), self.DOT_RADIUS)
+            pygame.draw.circle(self.screen, self.BLUE, (int(cx), int(cy)), self.DOT_RADIUS)
+
+    def draw_text(self, x, y, text, color):
+        text = self.small_font.render(text, True, color)
+        self.screen.blit(text, text.get_rect(center=( x, y)))
 
     def draw(self):
         self.screen.fill(self.RED)
@@ -97,17 +119,30 @@ class VideostopGame:
 
         if self.rolling:
             msg = "Press SPACE to stop"
-            color = self.BLACK
+            color = self.GREEN
+
         else:
+            self.draw_text(self.WIDTH // 2, 80, "press r to continue",self.BLUE )
+
             if self.dice[0] == self.dice[1] == self.dice[2]:
-                msg = "VIDEOSTOP! YOU WIN"
-                color = self.GREEN
+                msg = ("VIDEOSTOP! YOU WIN")
+                color = self.YELLOW
+
             else:
-                msg = "Not equal — press R"
-                color = self.yellow
+                msg = "the dice are not equal"
+                color = self.YELLOW
 
         text = self.small_font.render(msg, True, color)
         self.screen.blit(text, text.get_rect(center=(self.WIDTH // 2, 40)))
+
+
+        msg = f"You have succeded {self.success} times. You have failed {self.counter} times."
+        color = self.BLACK
+
+        text = self.small_font.render(msg, True, color)
+        self.screen.blit(text, text.get_rect(center=(self.WIDTH // 2, 250)))
+
+
 
         pygame.display.flip()
 
