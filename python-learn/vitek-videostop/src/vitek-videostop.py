@@ -12,8 +12,10 @@ class VideostopGame:
 
     WHITE = (245, 245, 245)
     BLACK = (30, 30, 30)
-    GREEN = (40, 160, 60)
+    GREEN = (40, 180, 0)
     RED = (200, 60, 60)
+    yellow = (255, 255, 40)
+    blue = (0, 0, 255)
 
     DIE_SIZE = 100
     DOT_RADIUS = 10
@@ -70,7 +72,7 @@ class VideostopGame:
             self.last_ticks += self.roll_interval
             chosen = random.randrange(0, 3)
             self.dice[chosen] += 1
-            if self.dice[chosen] > 6:
+            if self.dice[chosen] > 1:
                 self.dice[chosen] = 1
 
             # gradual acceleration
@@ -78,14 +80,14 @@ class VideostopGame:
 
     def draw_die(self, value, x, y):
         rect = pygame.Rect(x, y, self.DIE_SIZE, self.DIE_SIZE)
-        pygame.draw.rect(self.screen, self.BLACK, rect, border_radius=12)
+        pygame.draw.rect(self.screen, self.yellow, rect, border_radius=12)
         for dx, dy in self.DOT_POSITIONS[value]:
             cx = x + dx * self.DIE_SIZE
             cy = y + dy * self.DIE_SIZE
-            pygame.draw.circle(self.screen, self.WHITE, (int(cx), int(cy)), self.DOT_RADIUS)
+            pygame.draw.circle(self.screen, self.blue, (int(cx), int(cy)), self.DOT_RADIUS)
 
     def draw(self):
-        self.screen.fill(self.WHITE)
+        self.screen.fill(self.RED)
 
         spacing = 150
         start_x = 80
@@ -102,7 +104,7 @@ class VideostopGame:
                 color = self.GREEN
             else:
                 msg = "Not equal — press R"
-                color = self.RED
+                color = self.yellow
 
         text = self.small_font.render(msg, True, color)
         self.screen.blit(text, text.get_rect(center=(self.WIDTH // 2, 40)))
