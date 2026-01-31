@@ -1,6 +1,10 @@
+import random
+
+number = random.randint(1,5)
+
 print("You are in a dark room in a mysterious castle.")
 print("In front of you are seven doors you must choose one.")
-playerChoice = input("choose 1,2,3,4,5,6 or 7")
+playerChoice = input("choose 1,2,3,4,5,6 or 7: ")
 playerChoice = playerChoice.strip()
 if playerChoice == "1":
     print("you find a room full of treasure. you're rich.")
@@ -13,7 +17,7 @@ elif playerChoice == "3":
     print("you can either:")
     print("1)try to steal the dragons treasure.")
     print("2) try to tame the dragon")
-    dragonChoice = input("type 1 or 2...")
+    dragonChoice = input("type 1 or 2...: ")
     if dragonChoice == "1":
         print("the dragon wakes up and eats you, you are delicious.")
         print("GAME OVER,YOU LOSE!")
@@ -33,7 +37,7 @@ elif playerChoice == "6":
     print("you can either")
     print("1)take all the treasure")
     print("2)take only the huge ruby ")
-    treasureChoice = input("type 1 or 2...")
+    treasureChoice = input("type 1 or 2...: ")
     if treasureChoice == "1":
         print("the ceiling collapses on you")
         print("GAME OVER,YOU LOSE!")
@@ -43,14 +47,10 @@ elif playerChoice == "6":
 elif playerChoice == "7":
     print("you walk into a room with a Sphinx")
     print("the Sphinx asks you to answer a riddle")
-    print ("What has four legs in the morning two legs in the afternoon and three legs in the evening, asks the sphinx.")
+    print ("I'm thinking of a number from one to five guess which number I'm thinking of.")
     RiddleChoice = input("")
-    if RiddleChoice == "human":
+    if RiddleChoice == number :
         print("the Sphinx hisses,you guessed correctly.")
-        print("she must let you go")
-        print("GAME OVER,YOU WIN!")
-    elif RiddleChoice == "a human":
-        print("the Sphinx hisses you guessed correctly")
         print("she must let you go")
         print("GAME OVER,YOU WIN!")
     else:
