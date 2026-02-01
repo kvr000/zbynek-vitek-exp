@@ -9,12 +9,15 @@ class VideostopGame:
     HEIGHT = 300
     ROLL_INTERVAL_MS = 375
 
-    WHITE = (245, 245, 245)
-    BLACK = (30, 30, 30)
-    GREEN = (40, 180, 0)
-    RED = (200, 60, 60)
+    TEXT_COLOR = (30, 30, 30)
+    BACKGROUND_COLOR = (200, 60, 60)
+    DICE_COLOR = (255, 255, 40)
+    DOT_COLOR = (0, 0, 255)
+    SUCCESS_COLOR = (40, 180, 0)
+    FAILED_COLOR = (255, 255, 40)
     YELLOW = (255, 255, 40)
-    BLUE = (0, 0, 255)
+    CONTINUE_COLOR = (0, 0, 255)
+    BLACK = (0, 0, 0)
 
     DIE_SIZE = 100
     DOT_RADIUS = 10
@@ -98,18 +101,18 @@ class VideostopGame:
 
     def draw_die(self, value, x, y):
         rect = pygame.Rect(x, y, self.DIE_SIZE, self.DIE_SIZE)
-        pygame.draw.rect(self.screen, self.YELLOW, rect, border_radius=12)
+        pygame.draw.rect(self.screen, self.DICE_COLOR, rect, border_radius=12)
         for dx, dy in self.DOT_POSITIONS[value]:
             cx = x + dx * self.DIE_SIZE
             cy = y + dy * self.DIE_SIZE
-            pygame.draw.circle(self.screen, self.BLUE, (int(cx), int(cy)), self.DOT_RADIUS)
+            pygame.draw.circle(self.screen, self.DOT_COLOR, (int(cx), int(cy)), self.DOT_RADIUS)
 
     def draw_text(self, x, y, text, color):
         text = self.small_font.render(text, True, color)
         self.screen.blit(text, text.get_rect(center=( x, y)))
 
     def draw(self):
-        self.screen.fill(self.RED)
+        self.screen.fill(self.BACKGROUND_COLOR)
 
         spacing = 150
         start_x = 80
@@ -118,29 +121,19 @@ class VideostopGame:
             self.draw_die(value, start_x + i * spacing, y)
 
         if self.rolling:
-            msg = "Press SPACE to stop"
-            color = self.GREEN
+            self.draw_text(self.WIDTH// 2,40, "PRESS SPACE TO STOP", self.SUCCESS_COLOR)
 
         else:
-            self.draw_text(self.WIDTH // 2, 80, "press r to continue",self.BLUE )
+            self.draw_text(self.WIDTH // 2, 80, "press r to continue", self.CONTINUE_COLOR)
 
             if self.dice[0] == self.dice[1] == self.dice[2]:
-                msg = ("VIDEOSTOP! YOU WIN")
-                color = self.YELLOW
+                self.draw_text(self.WIDTH// 2, 40, "VIDEOSTOP! YOU WIN", self.SUCCESS_COLOR)
 
             else:
-                msg = "the dice are not equal"
-                color = self.YELLOW
-
-        text = self.small_font.render(msg, True, color)
-        self.screen.blit(text, text.get_rect(center=(self.WIDTH // 2, 40)))
+                self.draw_text(self.WIDTH // 2, 40, "the dice are not equal", self.FAILED_COLOR)
 
 
-        msg = f"You have succeded {self.success} times. You have failed {self.counter} times."
-        color = self.BLACK
-
-        text = self.small_font.render(msg, True, color)
-        self.screen.blit(text, text.get_rect(center=(self.WIDTH // 2, 250)))
+        self.draw_text(self.WIDTH // 2, 250,f"You have succeded {self.success} times. You have failed {self.counter} times.",self.BLACK  )
 
 
 
