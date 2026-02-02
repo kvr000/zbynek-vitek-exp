@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+import math
+print("type one or two")
+if input == 1:
+
+	n = 5.6
+
+	print('Original type:', type(n).__name__)
+	print('Original number:', n)
+
+	val = round(n)
+
+	print('Rounded type:', type(val).__name__)
+	print('Rounded value:', val)
+
+else:
+
+
+	n1 = 5.6
+	n2 = -2.6
+
+	# Positive number
+	data = math.trunc(n1)
+	print("Truncated (positive):", data, ', Type:', type(data).__name__)
+
+	# Negative number
+	val = math.trunc(n2)
+	print("Truncated (negative):", val, ', Type:', type(val).__name__)
+

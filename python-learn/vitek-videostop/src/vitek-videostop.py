@@ -136,7 +136,6 @@ class VideostopGame:
         self.draw_text(self.WIDTH // 2, 250,f"You have succeded {self.success} times. You have failed {self.counter} times.",self.BLACK  )
 
 
-
         pygame.display.flip()
 
     def quit(self):

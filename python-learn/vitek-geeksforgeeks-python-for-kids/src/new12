@@ -1,0 +1,12 @@
+#!/usr/bin/env python3
+decimal_number = 0.1
+binary_representation = format(decimal_number, '.30f')  # 30 decimal places
+print(f"Decimal: {decimal_number}\nBinary: {binary_representation}")
+
+
+
+from decimal import Decimal, getcontext
+
+getcontext().prec = 4  # Set precision to 4 decimal places
+result = Decimal('1.2') - Decimal('1.0')
+print(f"High Precision Result: {result}")

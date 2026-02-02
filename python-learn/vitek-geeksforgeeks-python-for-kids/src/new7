@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+string = "90"  # String representing an integer
+result1 = float(string)
+
+float_string = "-16.54"  # String representing a float
+result2 = float(float_string)
+
+print(result1)
+print(result2)
+
+
+number = "geeks"
+try:
+    print(float(number))
+except ValueError as e:
+    print(e)
