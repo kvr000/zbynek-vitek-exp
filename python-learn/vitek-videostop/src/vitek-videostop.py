@@ -4,10 +4,11 @@ import pygame
 import random
 import sys
 
+
 class VideostopGame:
     WIDTH = 600
     HEIGHT = 300
-    ROLL_INTERVAL_MS = 375
+    ROLL_INTERVAL_MS = 400
 
     TEXT_COLOR = (30, 30, 30)
     BACKGROUND_COLOR = (200, 60, 60)
@@ -28,13 +29,16 @@ class VideostopGame:
         3: [(0.25, 0.25), (0.5, 0.5), (0.75, 0.75)],
         4: [(0.25, 0.25), (0.25, 0.75), (0.75, 0.25), (0.75, 0.75)],
         5: [(0.25, 0.25), (0.25, 0.75), (0.75, 0.25), (0.75, 0.75), (0.5, 0.5)],
-        6: [(0.25, 0.25), (0.25, 0.5), (0.25, 0.75), (0.75, 0.25), (0.75, 0.5), (0.75, 0.75)]
+        6: [(0.25, 0.25), (0.25, 0.5), (0.25, 0.75), (0.75, 0.25), (0.75, 0.5), (0.75, 0.75)],
+        7: [(0.25, 0.25), (0.25, 0.5), (0.25, 0.75), (0.75, 0.25), (0.75, 0.5), (0.75, 0.75), (0.5, 0.5 )],
+        8: [(0.25, 0.25), (0.25, 0.5), (0.25, 0.75), (0.75, 0.25), (0.75, 0.5), (0.75, 0.75), (0.5, 0.75), (0.5, 0.25)],
+        9: [(0.25, 0.25), (0.25, 0.5), (0.25, 0.75), (0.75, 0.25), (0.75, 0.5), (0.75, 0.75), (0.5, 0.75), (0.5, 0.25), (0.5, 0.5)],
     }
-
     dice: list[int] = []
     rolling: bool = True
     last_ticks: int
     roll_interval: int
+    MAX_DICE = 9
 
     counter: int = 0
     success: int = 0
@@ -54,7 +58,7 @@ class VideostopGame:
         self.reset()
 
     def reset(self):
-        self.dice = [1, 3, 5]
+        self.dice = [random.randrange(1, self.MAX_DICE), random.randrange(1, self.MAX_DICE), random.randrange(1, self.MAX_DICE)]
         self.rolling = True
         self.last_ticks = pygame.time.get_ticks()
         self.roll_interval = self.ROLL_INTERVAL_MS
@@ -93,8 +97,8 @@ class VideostopGame:
             self.last_ticks += self.roll_interval
             chosen = random.randrange(0, 3)
             self.dice[chosen] += 1
-            if self.dice[chosen] > 6:
-                self.dice[chosen] = 1
+            if self.dice[chosen] > self.MAX_DICE:
+                self.dice[chosen] -=self.MAX_DICE
 
             # gradual acceleration
             self.roll_interval = max(4, self.roll_interval - 0.01)
