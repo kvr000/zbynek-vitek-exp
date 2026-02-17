@@ -17,6 +17,14 @@ second = parse_equation(second_str)
 print(first)
 print(second)
 
+a = first[0]
+b = second[0]
+c = a/b
+for i in range(len(second)):
+    second[i] = c * second[i]
+    first[i] = first[i] - second[i]
+d = first[2]/first[1]
+print(f"{d}")
 
 
-print(f"{first - second}")
+
