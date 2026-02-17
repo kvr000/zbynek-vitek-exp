@@ -24,7 +24,12 @@ for i in range(len(second)):
     second[i] = c * second[i]
     first[i] = first[i] - second[i]
 d = first[2]/first[1]
-print(f"{d}")
-
+second[2] = second[2] - second[1] * d
+second[1] = 0
+f = second[0]
+for i in range(len(second)):
+    second[i] = second[i]/f
+e = second[2]
+print(f"{e} {d}")
 
 
