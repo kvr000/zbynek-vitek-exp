@@ -96,7 +96,7 @@ class VideostopGame:
         while now - self.last_ticks >= self.roll_interval:
             self.last_ticks += self.roll_interval
             chosen = random.randrange(0, 3)
-            self.dice[chosen] += 1
+            self.dice[chosen] += 1      #random.randrange(1,10)
             if self.dice[chosen] > self.MAX_DICE:
                 self.dice[chosen] -=self.MAX_DICE
 
