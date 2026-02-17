@@ -4,7 +4,3 @@ print(float("infinity"))
 
 print(float("nan"))  # Not-a-Number
 print(float("NaN"))
-a = [5, -3, 7, -1, 2, -9, 4]
-
-n = [num for num in a if num < 0]
-print(n)

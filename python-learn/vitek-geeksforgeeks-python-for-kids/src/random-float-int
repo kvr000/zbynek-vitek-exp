@@ -1,5 +1,43 @@
 #!/usr/bin/env python3
 
-a = 0.1 + 0.2
-b = 0.3
-print(f"a: {a}\nb: {b}\nEqual: {a == b}")
+s = "learn python with gfg!"
+res = s.upper()
+print(res)
+a = [10, 20, 30, 40, 50]
+
+res = sum([i for i in a])
+print(res)
+
+import numpy as np
+
+a = [(1, 3, 4), (2, 4, 6), (3, 8, 1)] # list of tuples
+ele = 4 # element to be added
+
+# convert to numpy array
+arr = np.array(a)
+
+res = (arr + ele).tolist()
+res = [tuple(x) for x in res]
+
+print(res)
+
+
+
+
+def summation(test_tup):
+
+    # Converting into list
+    test = list(test_tup)
+
+    # Initializing count
+    count = 0
+
+    # for loop
+    for i in test:
+        count += i
+    return count
+
+
+# Initializing test_tup
+test_tup = (5, 20, 3, 7, 6, 8)
+print(summation(test_tup))
