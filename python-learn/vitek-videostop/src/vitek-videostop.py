@@ -38,7 +38,7 @@ class VideostopGame:
     rolling: bool = True
     last_ticks: int
     roll_interval: int
-    MAX_DICE = 9
+    MAX_DICE = 6
 
     counter: int = 0
     success: int = 0
@@ -134,7 +134,7 @@ class VideostopGame:
                 self.draw_text(self.WIDTH// 2, 40, "VIDEOSTOP! YOU WIN", self.SUCCESS_COLOR)
 
             else:
-                self.draw_text(self.WIDTH // 2, 40, "the dice are not equal", self.FAILED_COLOR)
+                self.draw_text(self.WIDTH // 2, 40, "The dice are not equal", self.FAILED_COLOR)
 
 
         self.draw_text(self.WIDTH // 2, 250,f"You have succeded {self.success} times. You have failed {self.counter} times.",self.BLACK  )
