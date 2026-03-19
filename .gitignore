@@ -57,3 +57,5 @@ var/
 .serverless
 
 venv/
+
+*.blend1
