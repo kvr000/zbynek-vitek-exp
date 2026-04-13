@@ -3,3 +3,10 @@ import math
 r = 1 # radius
 area = math.pi * (r ** 2)
 print(area)
+
+from collections import Counter
+a = ['apple', 'banana', 'apple', 'orange', 'banana', 'banana']
+freq = Counter(a)
+print(dict(freq))
+
+
