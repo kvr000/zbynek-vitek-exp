@@ -86,7 +86,7 @@ def start_game():
             place_leaf()
             caterpillar_length = caterpillar_length + 1
             caterpillar.shapesize(1, caterpillar_length, 1)
-            caterpillar_speed = caterpillar_speed + 1
+            caterpillar_speed = caterpillar_speed + 0.5
             score = score + 10
             display_score(score)
         if outside_window():
